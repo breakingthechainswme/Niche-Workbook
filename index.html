@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Instagram Launch Flowchart Workbook</title>
+<title>Instagram Launch Workbook</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap');
 
@@ -32,7 +32,6 @@
     padding: 0 0 80px 0;
   }
 
-  /* HEADER */
   .header {
     background: linear-gradient(135deg, #FF3CAC 0%, #784BA0 50%, #2B86C5 100%);
     padding: 40px 40px 30px;
@@ -47,448 +46,211 @@
     background: var(--dark);
     clip-path: ellipse(55% 100% at 50% 100%);
   }
-  .header h1 {
-    font-family: 'Syne', sans-serif;
-    font-size: 2.2rem;
-    font-weight: 800;
-    color: #fff;
-    letter-spacing: -1px;
-  }
-  .header p {
-    color: rgba(255,255,255,0.8);
-    font-size: 0.95rem;
-    margin-top: 6px;
-    font-weight: 300;
-  }
-  .header .instructions {
-    margin-top: 14px;
-    background: rgba(0,0,0,0.25);
-    border-radius: 10px;
-    padding: 10px 16px;
-    font-size: 0.82rem;
-    color: rgba(255,255,255,0.85);
-    line-height: 1.6;
-  }
+  .header h1 { font-family: 'Syne', sans-serif; font-size: 2.2rem; font-weight: 800; color: #fff; letter-spacing: -1px; }
+  .header p { color: rgba(255,255,255,0.8); font-size: 0.95rem; margin-top: 6px; font-weight: 300; }
+  .header .instructions { margin-top: 14px; background: rgba(0,0,0,0.25); border-radius: 10px; padding: 10px 16px; font-size: 0.82rem; color: rgba(255,255,255,0.85); line-height: 1.6; }
 
-  /* SAVE BUTTON */
-  .save-bar {
-    display: flex;
-    gap: 10px;
-    padding: 18px 40px 0;
-    flex-wrap: wrap;
-    align-items: center;
-  }
-  .btn {
-    background: linear-gradient(135deg, var(--pink), var(--purple));
-    color: #fff;
-    border: none;
-    border-radius: 8px;
-    padding: 10px 22px;
-    font-family: 'Syne', sans-serif;
-    font-size: 0.85rem;
-    font-weight: 700;
-    cursor: pointer;
-    letter-spacing: 0.5px;
-    transition: opacity 0.2s, transform 0.1s;
-  }
+  .save-bar { display: flex; gap: 10px; padding: 18px 40px 0; flex-wrap: wrap; align-items: center; }
+  .btn { background: linear-gradient(135deg, var(--pink), var(--purple)); color: #fff; border: none; border-radius: 8px; padding: 10px 22px; font-family: 'Syne', sans-serif; font-size: 0.85rem; font-weight: 700; cursor: pointer; letter-spacing: 0.5px; transition: opacity 0.2s, transform 0.1s; }
   .btn:hover { opacity: 0.88; transform: translateY(-1px); }
-  .btn.secondary {
-    background: rgba(255,255,255,0.08);
-    border: 1px solid var(--border);
-  }
+  .btn.secondary { background: rgba(255,255,255,0.08); border: 1px solid var(--border); }
+  .btn.green-btn { background: linear-gradient(135deg, #16a34a, #15803d); }
+  .btn.blue-btn { background: linear-gradient(135deg, #2563eb, #1d4ed8); }
   .save-note { font-size: 0.78rem; color: var(--muted); }
 
-  /* FLOWCHART WRAPPER */
-  .flow-wrapper {
-    padding: 40px 40px 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0;
-  }
+  .flow-wrapper { padding: 40px 40px 0; display: flex; flex-direction: column; align-items: center; gap: 0; }
 
-  /* PHASE LABEL */
-  .phase-label {
-    font-family: 'Syne', sans-serif;
-    font-size: 0.7rem;
-    font-weight: 700;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin-bottom: 6px;
-    align-self: flex-start;
-    margin-left: 10px;
-  }
-
-  /* NODES */
-  .node-row {
-    display: flex;
-    align-items: flex-start;
-    gap: 20px;
-    width: 100%;
-    max-width: 1100px;
-    position: relative;
-  }
-
-  .node {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 14px;
-    padding: 16px 18px;
-    position: relative;
-    flex: 1;
-    transition: border-color 0.2s;
-  }
+  .node { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 16px 18px; position: relative; flex: 1; transition: border-color 0.2s; }
   .node:hover { border-color: rgba(255,255,255,0.18); }
+  .node.start-node { background: linear-gradient(135deg, rgba(255,60,172,0.15), rgba(120,75,160,0.15)); border-color: rgba(255,60,172,0.35); text-align: center; }
+  .node.decision { background: linear-gradient(135deg, rgba(249,202,36,0.1), rgba(249,202,36,0.05)); border-color: rgba(249,202,36,0.4); }
+  .node.decision::before { content: '◆'; color: var(--accent); font-size: 1.1rem; position: absolute; top: -2px; left: 14px; }
+  .node.action { background: var(--card2); border-color: rgba(43,134,197,0.35); padding-left: 32px; }
+  .node.action::before { content: '▶'; color: var(--blue); font-size: 0.75rem; position: absolute; top: 18px; left: 14px; }
+  .node.end-node { background: linear-gradient(135deg, rgba(111,207,151,0.15), rgba(43,134,197,0.12)); border-color: rgba(111,207,151,0.5); text-align: center; }
 
-  .node.start-node {
-    background: linear-gradient(135deg, rgba(255,60,172,0.15), rgba(120,75,160,0.15));
-    border-color: rgba(255,60,172,0.35);
-    text-align: center;
-    max-width: 320px;
-    margin: 0 auto;
-  }
+  .node-title { font-family: 'Syne', sans-serif; font-size: 0.88rem; font-weight: 700; color: #fff; margin-bottom: 8px; }
+  .node-question { font-size: 0.78rem; color: var(--muted); margin-bottom: 8px; font-style: italic; line-height: 1.5; }
 
-  .node.decision {
-    background: linear-gradient(135deg, rgba(249,202,36,0.1), rgba(249,202,36,0.05));
-    border-color: rgba(249,202,36,0.4);
-    clip-path: none;
-    position: relative;
-  }
-  .node.decision::before {
-    content: '◆';
-    color: var(--accent);
-    font-size: 1.1rem;
-    position: absolute;
-    top: -2px; left: 14px;
-  }
-
-  .node.action {
-    background: var(--card2);
-    border-color: rgba(43,134,197,0.35);
-  }
-  .node.action::before {
-    content: '▶';
-    color: var(--blue);
-    font-size: 0.75rem;
-    position: absolute;
-    top: 18px; left: 14px;
-  }
-  .node.action { padding-left: 32px; }
-
-  .node.hook-node {
-    background: linear-gradient(135deg, rgba(111,207,151,0.1), rgba(43,134,197,0.08));
-    border-color: rgba(111,207,151,0.4);
-  }
-  .node.end-node {
-    background: linear-gradient(135deg, rgba(111,207,151,0.15), rgba(43,134,197,0.12));
-    border-color: rgba(111,207,151,0.5);
-    text-align: center;
-  }
-
-  .node-title {
-    font-family: 'Syne', sans-serif;
-    font-size: 0.88rem;
-    font-weight: 700;
-    color: #fff;
-    margin-bottom: 8px;
-  }
-  .node-question {
-    font-size: 0.78rem;
-    color: var(--muted);
-    margin-bottom: 8px;
-    font-style: italic;
-    line-height: 1.5;
-  }
-
-  /* EDITABLE TEXTAREA */
-  .editable {
-    width: 100%;
-    background: rgba(0,0,0,0.3);
-    border: 1px solid rgba(255,255,255,0.07);
-    border-radius: 8px;
-    color: var(--text);
-    font-family: 'DM Sans', sans-serif;
-    font-size: 0.8rem;
-    padding: 8px 10px;
-    resize: vertical;
-    min-height: 56px;
-    line-height: 1.5;
-    transition: border-color 0.2s;
-    margin-top: 4px;
-  }
-  .editable:focus {
-    outline: none;
-    border-color: rgba(255,60,172,0.5);
-    background: rgba(0,0,0,0.45);
-  }
+  .editable { width: 100%; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.07); border-radius: 8px; color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 0.8rem; padding: 8px 10px; resize: vertical; min-height: 56px; line-height: 1.5; transition: border-color 0.2s; margin-top: 4px; }
+  .editable:focus { outline: none; border-color: rgba(255,60,172,0.5); background: rgba(0,0,0,0.45); }
   .editable::placeholder { color: rgba(255,255,255,0.2); }
-
-  /* PROS / CONS */
-  .pros-cons {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 8px;
-    margin-top: 8px;
-  }
-  .pros-cons-label {
-    font-size: 0.68rem;
-    font-weight: 700;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    margin-bottom: 3px;
-  }
-  .pros-cons-label.pro { color: var(--green); }
-  .pros-cons-label.con { color: var(--red); }
   .editable.small { min-height: 48px; font-size: 0.76rem; }
 
-  /* ARROWS */
-  .arrow-down {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 4px 0;
-    color: var(--muted);
-    font-size: 1.1rem;
-    line-height: 1;
-    gap: 0;
-    min-width: 20px;
-  }
-  .arrow-down::before { content: '|'; font-size: 0.7rem; letter-spacing: -2px; }
-  .arrow-down::after { content: '▼'; font-size: 0.65rem; }
+  .pros-cons { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 8px; }
+  .pros-cons-label { font-size: 0.68rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 3px; }
+  .pros-cons-label.pro { color: var(--green); }
+  .pros-cons-label.con { color: var(--red); }
 
-  .arrow-connector {
-    width: 100%;
-    max-width: 1100px;
-    display: flex;
-    justify-content: center;
-    padding: 4px 0;
-  }
-  .arrow-connector .line {
-    width: 2px;
-    height: 24px;
-    background: linear-gradient(to bottom, rgba(255,255,255,0.12), rgba(255,255,255,0.04));
-  }
-  .arrow-connector .arrowhead {
-    width: 0; height: 0;
-    border-left: 6px solid transparent;
-    border-right: 6px solid transparent;
-    border-top: 8px solid rgba(255,255,255,0.12);
-  }
-  .arrow-col {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0;
-  }
+  .arrow-connector { width: 100%; max-width: 1100px; display: flex; justify-content: center; padding: 4px 0; }
+  .arrow-connector .line { width: 2px; height: 24px; background: linear-gradient(to bottom, rgba(255,255,255,0.12), rgba(255,255,255,0.04)); }
+  .arrow-connector .arrowhead { width: 0; height: 0; border-left: 6px solid transparent; border-right: 6px solid transparent; border-top: 8px solid rgba(255,255,255,0.12); }
+  .arrow-col { display: flex; flex-direction: column; align-items: center; gap: 0; }
 
-  /* BRANCH */
-  .branch-row {
-    display: flex;
-    gap: 16px;
-    width: 100%;
-    max-width: 1100px;
-  }
-  .branch-col {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-    align-items: center;
-  }
-  .branch-label {
-    font-size: 0.7rem;
-    font-weight: 700;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    color: var(--accent);
-    background: rgba(249,202,36,0.1);
-    border: 1px solid rgba(249,202,36,0.25);
-    border-radius: 6px;
-    padding: 2px 10px;
-    margin-bottom: 6px;
-  }
-
-  /* HOOK GENERATOR CARDS */
-  .hook-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 12px;
-    width: 100%;
-    max-width: 1100px;
-    margin: 0;
-  }
-  .hook-card {
-    background: var(--card2);
-    border: 1px solid rgba(111,207,151,0.2);
-    border-radius: 12px;
-    padding: 14px 16px;
-  }
-  .hook-card-title {
-    font-family: 'Syne', sans-serif;
-    font-size: 0.78rem;
-    font-weight: 700;
-    color: var(--green);
-    margin-bottom: 4px;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-  }
-  .hook-card-formula {
-    font-size: 0.72rem;
-    color: var(--accent);
-    background: rgba(249,202,36,0.08);
-    border-radius: 4px;
-    padding: 3px 7px;
-    margin-bottom: 7px;
-    font-style: italic;
-  }
-
-  /* SECTION DIVIDER */
-  .section-divider {
-    width: 100%;
-    max-width: 1100px;
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    margin: 28px 0 10px;
-  }
+  .section-divider { width: 100%; max-width: 1100px; display: flex; align-items: center; gap: 16px; margin: 28px 0 10px; }
   .section-divider .line { flex: 1; height: 1px; background: var(--border); }
-  .section-divider .label {
-    font-family: 'Syne', sans-serif;
-    font-size: 0.7rem;
-    font-weight: 700;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--pink);
-    white-space: nowrap;
-  }
+  .section-divider .label { font-family: 'Syne', sans-serif; font-size: 0.7rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--pink); white-space: nowrap; }
 
-  /* STATUS BADGE */
-  .status-badge {
-    display: inline-block;
-    font-size: 0.65rem;
-    font-weight: 700;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    border-radius: 20px;
-    padding: 2px 9px;
-    margin-bottom: 8px;
-  }
-  .status-badge.todo { background: rgba(255,255,255,0.07); color: var(--muted); }
-  .status-badge.inprogress { background: rgba(249,202,36,0.15); color: var(--accent); }
-  .status-badge.done { background: rgba(111,207,151,0.15); color: var(--green); }
-
-  /* STATUS SELECT */
-  .status-select {
-    background: rgba(0,0,0,0.3);
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    color: var(--text);
-    font-size: 0.75rem;
-    padding: 3px 7px;
-    cursor: pointer;
-    font-family: 'DM Sans', sans-serif;
-    margin-top: 6px;
-  }
-  .status-select:focus { outline: none; }
-
-  /* RATING */
-  .rating-row {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    margin-top: 6px;
-    font-size: 0.75rem;
-    color: var(--muted);
-  }
-  .stars span {
-    cursor: pointer;
-    font-size: 1rem;
-    opacity: 0.3;
-    transition: opacity 0.15s;
-  }
-  .stars span.active { opacity: 1; }
-
-  /* NICHE IDEA CARDS */
-  .niche-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 14px;
-    width: 100%;
-    max-width: 1100px;
-  }
-  .niche-card {
-    background: var(--card2);
-    border: 1px solid var(--border);
-    border-radius: 14px;
-    padding: 16px;
-    position: relative;
-    transition: border-color 0.2s;
-  }
+  .niche-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; width: 100%; max-width: 1100px; }
+  .niche-card { background: var(--card2); border: 1px solid var(--border); border-radius: 14px; padding: 16px; position: relative; transition: border-color 0.2s; }
   .niche-card:hover { border-color: rgba(255,60,172,0.3); }
 
-  /* CHECKLIST */
-  .checklist { list-style: none; margin-top: 4px; }
-  .checklist li {
-    display: flex;
-    align-items: flex-start;
-    gap: 7px;
-    margin-bottom: 5px;
-    font-size: 0.78rem;
-    color: var(--text);
-  }
-  .checklist li input[type="checkbox"] {
-    margin-top: 2px;
-    accent-color: var(--pink);
-    cursor: pointer;
-    flex-shrink: 0;
-  }
+  .hook-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; width: 100%; max-width: 1100px; }
+  .hook-card { background: var(--card2); border: 1px solid rgba(111,207,151,0.2); border-radius: 12px; padding: 14px 16px; }
+  .hook-card-title { font-family: 'Syne', sans-serif; font-size: 0.78rem; font-weight: 700; color: var(--green); margin-bottom: 4px; }
+  .hook-card-formula { font-size: 0.72rem; color: var(--accent); background: rgba(249,202,36,0.08); border-radius: 4px; padding: 3px 7px; margin-bottom: 7px; font-style: italic; }
 
-  /* PRINT hint */
-  .print-note {
-    text-align: center;
-    font-size: 0.75rem;
-    color: var(--muted);
-    margin-top: 40px;
-  }
+  .status-select { background: rgba(0,0,0,0.3); border: 1px solid var(--border); border-radius: 6px; color: var(--text); font-size: 0.75rem; padding: 3px 7px; cursor: pointer; font-family: 'DM Sans', sans-serif; margin-top: 6px; }
+
+  .rating-row { display: flex; align-items: center; gap: 6px; margin-top: 6px; font-size: 0.75rem; color: var(--muted); }
+  .stars span { cursor: pointer; font-size: 1.1rem; opacity: 0.25; transition: opacity 0.15s, transform 0.1s; }
+  .stars span.active { opacity: 1; }
+  .stars span:hover { transform: scale(1.2); }
+
+  .checklist { list-style: none; margin-top: 4px; }
+  .checklist li { display: flex; align-items: flex-start; gap: 7px; margin-bottom: 5px; font-size: 0.78rem; color: var(--text); }
+  .checklist li input[type="checkbox"] { margin-top: 2px; accent-color: var(--pink); cursor: pointer; flex-shrink: 0; }
+
+  /* ── SUMMARY MODAL ── */
+  .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.75); z-index: 1000; overflow-y: auto; padding: 40px 20px; }
+  .modal-overlay.open { display: block; }
+  .modal { background: #fff; color: #1a1a2e; border-radius: 20px; max-width: 860px; margin: 0 auto; overflow: hidden; font-family: 'DM Sans', sans-serif; }
+  .modal-header { background: linear-gradient(135deg, #FF3CAC, #784BA0, #2B86C5); padding: 32px 40px; color: white; }
+  .modal-header h2 { font-family: 'Syne', sans-serif; font-size: 1.8rem; font-weight: 800; }
+  .modal-header p { opacity: 0.8; font-size: 0.9rem; margin-top: 4px; }
+  .modal-header .export-date { font-size: 0.75rem; opacity: 0.65; margin-top: 8px; }
+  .modal-body { padding: 32px 40px; }
+  .modal-actions { display: flex; gap: 10px; padding: 0 40px 32px; flex-wrap: wrap; }
+
+  .summary-section { margin-bottom: 28px; }
+  .summary-section h3 { font-family: 'Syne', sans-serif; font-size: 0.7rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: #888; border-bottom: 1px solid #e5e7eb; padding-bottom: 6px; margin-bottom: 14px; }
+
+  /* TOP 2 NICHE CARDS */
+  .top-niche-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+  .top-niche-card { border-radius: 14px; padding: 20px; position: relative; overflow: hidden; }
+  .top-niche-card.rank1 { background: linear-gradient(135deg, #fff7ed, #fef3c7); border: 2px solid #f59e0b; }
+  .top-niche-card.rank2 { background: linear-gradient(135deg, #f0f9ff, #e0f2fe); border: 2px solid #0ea5e9; }
+  .top-niche-card .rank-badge { position: absolute; top: 12px; right: 12px; font-family: 'Syne', sans-serif; font-size: 0.65rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; border-radius: 20px; padding: 2px 9px; }
+  .rank1 .rank-badge { background: #f59e0b; color: white; }
+  .rank2 .rank-badge { background: #0ea5e9; color: white; }
+  .top-niche-card .niche-name { font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 700; color: #1a1a2e; margin-bottom: 6px; }
+  .top-niche-card .star-display { color: #f59e0b; font-size: 0.9rem; margin-bottom: 10px; }
+  .top-niche-card .niche-detail-label { font-size: 0.68rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: #888; margin-top: 8px; margin-bottom: 2px; }
+  .top-niche-card .niche-detail-val { font-size: 0.82rem; color: #374151; line-height: 1.5; }
+  .top-niche-card .pc-row { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 8px; }
+  .top-niche-card .pc-box { background: rgba(0,0,0,0.05); border-radius: 8px; padding: 8px 10px; }
+  .top-niche-card .pc-label { font-size: 0.65rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 3px; }
+  .pc-label.pro { color: #16a34a; }
+  .pc-label.con { color: #dc2626; }
+  .top-niche-card .pc-val { font-size: 0.78rem; color: #374151; line-height: 1.4; }
+
+  /* OTHERS LIST */
+  .others-list { background: #f9fafb; border: 1px solid #e5e7eb; border-radius: 12px; padding: 16px 20px; }
+  .others-list-title { font-family: 'Syne', sans-serif; font-size: 0.72rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: #6b7280; margin-bottom: 12px; }
+  .other-niche-row { display: flex; align-items: flex-start; gap: 12px; padding: 10px 0; border-bottom: 1px solid #e5e7eb; }
+  .other-niche-row:last-child { border-bottom: none; padding-bottom: 0; }
+  .other-niche-row .on-stars { color: #f59e0b; font-size: 0.8rem; white-space: nowrap; min-width: 70px; }
+  .other-niche-row .on-name { font-family: 'Syne', sans-serif; font-size: 0.82rem; font-weight: 700; color: #1a1a2e; }
+  .other-niche-row .on-detail { font-size: 0.76rem; color: #6b7280; margin-top: 2px; line-height: 1.4; }
+  .other-niche-row .on-status { font-size: 0.7rem; background: #f3f4f6; border-radius: 20px; padding: 1px 8px; color: #6b7280; white-space: nowrap; }
+
+  /* GENERAL SUMMARY FIELDS */
+  .summary-field { margin-bottom: 12px; }
+  .summary-field .sf-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: #9ca3af; margin-bottom: 3px; }
+  .summary-field .sf-val { font-size: 0.88rem; color: #1f2937; line-height: 1.6; background: #f9fafb; border: 1px solid #e5e7eb; border-radius: 8px; padding: 10px 14px; white-space: pre-wrap; }
+  .summary-field .sf-val.empty { color: #d1d5db; font-style: italic; }
+
+  .summary-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .summary-3col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
+
+  .hook-summary-card { background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 10px; padding: 12px 14px; }
+  .hook-summary-card .hs-title { font-family: 'Syne', sans-serif; font-size: 0.72rem; font-weight: 700; color: #16a34a; margin-bottom: 4px; }
+  .hook-summary-card .hs-val { font-size: 0.8rem; color: #1f2937; line-height: 1.5; }
+  .hook-summary-card .hs-val.empty { color: #9ca3af; font-style: italic; }
+
+  .checklist-summary { list-style: none; }
+  .checklist-summary li { display: flex; align-items: center; gap: 8px; font-size: 0.82rem; color: #374151; padding: 4px 0; }
+  .checklist-summary li .cb-icon { font-size: 0.9rem; }
+
+  .modal-btn { background: linear-gradient(135deg, #FF3CAC, #784BA0); color: white; border: none; border-radius: 8px; padding: 10px 22px; font-family: 'Syne', sans-serif; font-size: 0.85rem; font-weight: 700; cursor: pointer; transition: opacity 0.2s; }
+  .modal-btn:hover { opacity: 0.88; }
+  .modal-btn.outline { background: transparent; border: 2px solid #e5e7eb; color: #374151; }
+  .modal-btn.outline:hover { background: #f9fafb; }
+  .modal-btn.pdf-btn { background: linear-gradient(135deg, #2563eb, #1d4ed8); }
+
+  .no-data-msg { text-align: center; padding: 24px; color: #9ca3af; font-size: 0.85rem; font-style: italic; }
 
   @media (max-width: 700px) {
     .hook-grid, .niche-grid { grid-template-columns: 1fr; }
-    .branch-row { flex-direction: column; }
-    .pros-cons { grid-template-columns: 1fr; }
     .flow-wrapper { padding: 20px 16px 0; }
     .save-bar { padding: 14px 16px 0; }
     .header { padding: 28px 20px 24px; }
+    .top-niche-cards { grid-template-columns: 1fr; }
+    .summary-2col, .summary-3col { grid-template-columns: 1fr; }
+    .modal-body, .modal-actions { padding-left: 20px; padding-right: 20px; }
+  }
+
+  /* PRINT STYLES FOR PDF */
+  @media print {
+    body { background: white !important; }
+    .modal-overlay { display: block !important; position: static !important; background: none !important; padding: 0 !important; }
+    .modal { box-shadow: none !important; border-radius: 0 !important; max-width: 100% !important; }
+    .modal-actions, .modal-btn { display: none !important; }
+    .top-niche-card.rank1 { background: #fff7ed !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .top-niche-card.rank2 { background: #f0f9ff !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
   }
 </style>
 </head>
 <body>
 
+<!-- ══════════════ SUMMARY MODAL ══════════════ -->
+<div class="modal-overlay" id="summaryModal">
+  <div class="modal">
+    <div class="modal-header">
+      <h2>📋 Workbook Summary</h2>
+      <p>Your ideas ranked by excitement — top 2 spotlighted, all others preserved</p>
+      <div class="export-date" id="exportDate"></div>
+    </div>
+    <div class="modal-body" id="modalBody">
+      <!-- Populated by JS -->
+    </div>
+    <div class="modal-actions">
+      <button class="modal-btn pdf-btn" onclick="exportPDF()">⬇ Save as PDF</button>
+      <button class="modal-btn" onclick="exportSummaryHTML()">⬇ Download as HTML</button>
+      <button class="modal-btn outline" onclick="closeModal()">✕ Close</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ HEADER ══════════════ -->
 <div class="header">
   <h1>📱 Instagram Launch Workbook</h1>
   <p>A brainstorm-to-post flowchart you can fill in over time</p>
   <div class="instructions">
-    <strong>How to use:</strong> Fill in the text boxes as ideas come to you — nothing needs to be perfect right away. Work top-to-bottom, but jump around freely. Use the status dropdowns to track where each idea is. <strong>Ctrl+S / Cmd+S saves the HTML file</strong> with your notes if opened locally. For Google Drive: save this file, upload to Drive, right-click → Open With → Google Chrome.
+    <strong>How to use:</strong> Fill in the text boxes as ideas come to you. Use the star ratings on each niche idea — they power the ranked export. Click <strong>Generate Summary</strong> anytime to see your top ideas and export as PDF or HTML.
   </div>
 </div>
 
+<!-- ══════════════ ACTION BAR ══════════════ -->
 <div class="save-bar">
-  <button class="btn" onclick="exportNotes()">⬇ Export My Notes (.txt)</button>
+  <button class="btn green-btn" onclick="generateSummary()">✨ Generate Summary</button>
+  <button class="btn blue-btn" onclick="generateSummary(); setTimeout(exportPDF,600)">⬇ Export PDF</button>
+  <button class="btn" onclick="generateSummary(); setTimeout(exportSummaryHTML,600)">⬇ Export HTML</button>
   <button class="btn secondary" onclick="clearAll()">🗑 Clear All</button>
-  <span class="save-note">Tip: Your notes stay in the page as long as you don't close/refresh. Export often!</span>
+  <span class="save-note">Tip: Rate each niche with stars — the export ranks them automatically</span>
 </div>
 
+<!-- ══════════════ FLOW WRAPPER ══════════════ -->
 <div class="flow-wrapper">
 
-  <!-- ═══════════════════════════════════ PHASE 1: KINDLE THE IDEA ═══════ -->
+  <!-- PHASE 1 -->
   <div class="section-divider"><div class="line"></div><div class="label">Phase 1 — Kindle the Idea</div><div class="line"></div></div>
 
   <div style="width:100%;max-width:1100px;">
-    <div class="node start-node" style="max-width:100%">
+    <div class="node start-node">
       <div class="node-title">🌱 START: What lights you up?</div>
       <div class="node-question">Think about what you naturally talk about, search for, or spend money on. Don't filter yet.</div>
-      <textarea class="editable" placeholder="Dump everything here — hobbies, obsessions, skills, things you rant about, things you wish existed..." rows="3"></textarea>
+      <textarea class="editable" id="phase1_braindump" placeholder="Dump everything here — hobbies, obsessions, skills, things you rant about, things you wish existed..." rows="3"></textarea>
     </div>
   </div>
 
@@ -498,388 +260,591 @@
     <div class="node-title">🔍 Idea Filter Questions</div>
     <div class="node-question">Answer these to narrow your energy. No right answers — just honest ones.</div>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:8px;">
-      <div>
-        <div style="font-size:0.75rem;color:var(--accent);margin-bottom:3px;">Could you talk about this for 30 minutes without stopping?</div>
-        <textarea class="editable small" placeholder="Your answer..."></textarea>
-      </div>
-      <div>
-        <div style="font-size:0.75rem;color:var(--accent);margin-bottom:3px;">Is there an audience already searching for this?</div>
-        <textarea class="editable small" placeholder="Your answer..."></textarea>
-      </div>
-      <div>
-        <div style="font-size:0.75rem;color:var(--accent);margin-bottom:3px;">What's a painful problem you've personally solved?</div>
-        <textarea class="editable small" placeholder="Your answer..."></textarea>
-      </div>
-      <div>
-        <div style="font-size:0.75rem;color:var(--accent);margin-bottom:3px;">What do people ask YOU for advice on?</div>
-        <textarea class="editable small" placeholder="Your answer..."></textarea>
-      </div>
+      <div><div style="font-size:0.75rem;color:var(--accent);margin-bottom:3px;">Could you talk about this for 30 minutes without stopping?</div><textarea class="editable small" id="filter_q1" placeholder="Your answer..."></textarea></div>
+      <div><div style="font-size:0.75rem;color:var(--accent);margin-bottom:3px;">Is there an audience already searching for this?</div><textarea class="editable small" id="filter_q2" placeholder="Your answer..."></textarea></div>
+      <div><div style="font-size:0.75rem;color:var(--accent);margin-bottom:3px;">What's a painful problem you've personally solved?</div><textarea class="editable small" id="filter_q3" placeholder="Your answer..."></textarea></div>
+      <div><div style="font-size:0.75rem;color:var(--accent);margin-bottom:3px;">What do people ask YOU for advice on?</div><textarea class="editable small" id="filter_q4" placeholder="Your answer..."></textarea></div>
     </div>
   </div>
 
-  <!-- ═══════════════════════════════════ PHASE 2: NICHE EXPLORATION ═══════ -->
+  <!-- PHASE 2 -->
   <div class="section-divider"><div class="line"></div><div class="label">Phase 2 — Niche Exploration (fill one card per idea)</div><div class="line"></div></div>
 
   <div class="niche-grid">
-
-    <!-- NICHE CARD 1 -->
-    <div class="niche-card">
-      <div class="node-title">💡 Niche Idea #1</div>
-      <textarea class="editable small" placeholder="Name your niche idea..." style="min-height:36px;"></textarea>
-      <div style="margin-top:10px;font-size:0.73rem;color:var(--muted);margin-bottom:3px;">Target audience:</div>
-      <textarea class="editable small" placeholder="Who would follow this?" style="min-height:36px;"></textarea>
-      <div class="pros-cons">
-        <div><div class="pros-cons-label pro">✅ Pros</div><textarea class="editable small" placeholder="Why this could work..."></textarea></div>
-        <div><div class="pros-cons-label con">❌ Cons</div><textarea class="editable small" placeholder="Challenges / risks..."></textarea></div>
-      </div>
-      <div class="rating-row">Excitement: <div class="stars" data-id="n1">
-        <span onclick="rate(this,'n1',1)">★</span><span onclick="rate(this,'n1',2)">★</span><span onclick="rate(this,'n1',3)">★</span><span onclick="rate(this,'n1',4)">★</span><span onclick="rate(this,'n1',5)">★</span>
-      </div></div>
-      <select class="status-select"><option>⬜ To Explore</option><option>🟡 In Progress</option><option>✅ Chosen</option><option>❌ Ruled Out</option></select>
-    </div>
-
-    <!-- NICHE CARD 2 -->
-    <div class="niche-card">
-      <div class="node-title">💡 Niche Idea #2</div>
-      <textarea class="editable small" placeholder="Name your niche idea..." style="min-height:36px;"></textarea>
-      <div style="margin-top:10px;font-size:0.73rem;color:var(--muted);margin-bottom:3px;">Target audience:</div>
-      <textarea class="editable small" placeholder="Who would follow this?" style="min-height:36px;"></textarea>
-      <div class="pros-cons">
-        <div><div class="pros-cons-label pro">✅ Pros</div><textarea class="editable small" placeholder="Why this could work..."></textarea></div>
-        <div><div class="pros-cons-label con">❌ Cons</div><textarea class="editable small" placeholder="Challenges / risks..."></textarea></div>
-      </div>
-      <div class="rating-row">Excitement: <div class="stars" data-id="n2">
-        <span onclick="rate(this,'n2',1)">★</span><span onclick="rate(this,'n2',2)">★</span><span onclick="rate(this,'n2',3)">★</span><span onclick="rate(this,'n2',4)">★</span><span onclick="rate(this,'n2',5)">★</span>
-      </div></div>
-      <select class="status-select"><option>⬜ To Explore</option><option>🟡 In Progress</option><option>✅ Chosen</option><option>❌ Ruled Out</option></select>
-    </div>
-
-    <!-- NICHE CARD 3 -->
-    <div class="niche-card">
-      <div class="node-title">💡 Niche Idea #3</div>
-      <textarea class="editable small" placeholder="Name your niche idea..." style="min-height:36px;"></textarea>
-      <div style="margin-top:10px;font-size:0.73rem;color:var(--muted);margin-bottom:3px;">Target audience:</div>
-      <textarea class="editable small" placeholder="Who would follow this?" style="min-height:36px;"></textarea>
-      <div class="pros-cons">
-        <div><div class="pros-cons-label pro">✅ Pros</div><textarea class="editable small" placeholder="Why this could work..."></textarea></div>
-        <div><div class="pros-cons-label con">❌ Cons</div><textarea class="editable small" placeholder="Challenges / risks..."></textarea></div>
-      </div>
-      <div class="rating-row">Excitement: <div class="stars" data-id="n3">
-        <span onclick="rate(this,'n3',1)">★</span><span onclick="rate(this,'n3',2)">★</span><span onclick="rate(this,'n3',3)">★</span><span onclick="rate(this,'n3',4)">★</span><span onclick="rate(this,'n3',5)">★</span>
-      </div></div>
-      <select class="status-select"><option>⬜ To Explore</option><option>🟡 In Progress</option><option>✅ Chosen</option><option>❌ Ruled Out</option></select>
-    </div>
-
-    <!-- NICHE CARD 4 -->
-    <div class="niche-card">
-      <div class="node-title">💡 Niche Idea #4</div>
-      <textarea class="editable small" placeholder="Name your niche idea..." style="min-height:36px;"></textarea>
-      <div style="margin-top:10px;font-size:0.73rem;color:var(--muted);margin-bottom:3px;">Target audience:</div>
-      <textarea class="editable small" placeholder="Who would follow this?" style="min-height:36px;"></textarea>
-      <div class="pros-cons">
-        <div><div class="pros-cons-label pro">✅ Pros</div><textarea class="editable small" placeholder="Why this could work..."></textarea></div>
-        <div><div class="pros-cons-label con">❌ Cons</div><textarea class="editable small" placeholder="Challenges / risks..."></textarea></div>
-      </div>
-      <div class="rating-row">Excitement: <div class="stars" data-id="n4">
-        <span onclick="rate(this,'n4',1)">★</span><span onclick="rate(this,'n4',2)">★</span><span onclick="rate(this,'n4',3)">★</span><span onclick="rate(this,'n4',4)">★</span><span onclick="rate(this,'n4',5)">★</span>
-      </div></div>
-      <select class="status-select"><option>⬜ To Explore</option><option>🟡 In Progress</option><option>✅ Chosen</option><option>❌ Ruled Out</option></select>
-    </div>
-
-    <!-- NICHE CARD 5 -->
-    <div class="niche-card">
-      <div class="node-title">💡 Niche Idea #5</div>
-      <textarea class="editable small" placeholder="Name your niche idea..." style="min-height:36px;"></textarea>
-      <div style="margin-top:10px;font-size:0.73rem;color:var(--muted);margin-bottom:3px;">Target audience:</div>
-      <textarea class="editable small" placeholder="Who would follow this?" style="min-height:36px;"></textarea>
-      <div class="pros-cons">
-        <div><div class="pros-cons-label pro">✅ Pros</div><textarea class="editable small" placeholder="Why this could work..."></textarea></div>
-        <div><div class="pros-cons-label con">❌ Cons</div><textarea class="editable small" placeholder="Challenges / risks..."></textarea></div>
-      </div>
-      <div class="rating-row">Excitement: <div class="stars" data-id="n5">
-        <span onclick="rate(this,'n5',1)">★</span><span onclick="rate(this,'n5',2)">★</span><span onclick="rate(this,'n5',3)">★</span><span onclick="rate(this,'n5',4)">★</span><span onclick="rate(this,'n5',5)">★</span>
-      </div></div>
-      <select class="status-select"><option>⬜ To Explore</option><option>🟡 In Progress</option><option>✅ Chosen</option><option>❌ Ruled Out</option></select>
-    </div>
-
-    <!-- NICHE CARD 6 -->
-    <div class="niche-card">
-      <div class="node-title">💡 Niche Idea #6</div>
-      <textarea class="editable small" placeholder="Name your niche idea..." style="min-height:36px;"></textarea>
-      <div style="margin-top:10px;font-size:0.73rem;color:var(--muted);margin-bottom:3px;">Target audience:</div>
-      <textarea class="editable small" placeholder="Who would follow this?" style="min-height:36px;"></textarea>
-      <div class="pros-cons">
-        <div><div class="pros-cons-label pro">✅ Pros</div><textarea class="editable small" placeholder="Why this could work..."></textarea></div>
-        <div><div class="pros-cons-label con">❌ Cons</div><textarea class="editable small" placeholder="Challenges / risks..."></textarea></div>
-      </div>
-      <div class="rating-row">Excitement: <div class="stars" data-id="n6">
-        <span onclick="rate(this,'n6',1)">★</span><span onclick="rate(this,'n6',2)">★</span><span onclick="rate(this,'n6',3)">★</span><span onclick="rate(this,'n6',4)">★</span><span onclick="rate(this,'n6',5)">★</span>
-      </div></div>
-      <select class="status-select"><option>⬜ To Explore</option><option>🟡 In Progress</option><option>✅ Chosen</option><option>❌ Ruled Out</option></select>
-    </div>
-
-  </div><!-- /niche-grid -->
+    <!-- Cards generated via JS for cleanliness -->
+  </div>
 
   <div class="arrow-connector" style="margin-top:20px;"><div class="arrow-col"><div class="line"></div><div class="arrowhead"></div></div></div>
 
-  <!-- DECISION: NICHE CHOSEN -->
   <div class="node decision" style="width:100%;max-width:1100px;">
     <div class="node-title">🎯 Decision: Which niche are you going with?</div>
     <div class="node-question">Based on your ratings and pros/cons above — which one has the best combo of passion + audience potential?</div>
-    <textarea class="editable" placeholder="My chosen niche is... because..."></textarea>
+    <textarea class="editable" id="niche_decision" placeholder="My chosen niche is... because..."></textarea>
     <div style="font-size:0.75rem;color:var(--muted);margin-top:8px;margin-bottom:3px;">What makes my take on this niche DIFFERENT from others?</div>
-    <textarea class="editable small" placeholder="My unique angle / POV is..."></textarea>
+    <textarea class="editable small" id="niche_angle" placeholder="My unique angle / POV is..."></textarea>
   </div>
 
-  <!-- ═══════════════════════════════════ PHASE 3: CONTENT PILLARS ═══════ -->
+  <!-- PHASE 3 -->
   <div class="section-divider"><div class="line"></div><div class="label">Phase 3 — Content Pillars</div><div class="line"></div></div>
-
   <div style="width:100%;max-width:1100px;">
-    <div class="node action" style="padding-left:32px;">
+    <div class="node action">
       <div class="node-title">📐 Define 3–5 Content Pillars</div>
-      <div class="node-question">Pillars = the recurring themes/topics you'll post about. Everything you post should fit one of these buckets.</div>
+      <div class="node-question">Pillars = the recurring themes you'll post about. Everything should fit one of these buckets.</div>
       <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-top:8px;">
-        <div><div style="font-size:0.68rem;color:var(--pink);margin-bottom:2px;font-weight:700;">PILLAR 1</div><textarea class="editable small" placeholder="e.g. Tutorials"></textarea></div>
-        <div><div style="font-size:0.68rem;color:var(--pink);margin-bottom:2px;font-weight:700;">PILLAR 2</div><textarea class="editable small" placeholder="e.g. Personal story"></textarea></div>
-        <div><div style="font-size:0.68rem;color:var(--pink);margin-bottom:2px;font-weight:700;">PILLAR 3</div><textarea class="editable small" placeholder="e.g. Myth-busting"></textarea></div>
-        <div><div style="font-size:0.68rem;color:var(--pink);margin-bottom:2px;font-weight:700;">PILLAR 4</div><textarea class="editable small" placeholder="Optional"></textarea></div>
-        <div><div style="font-size:0.68rem;color:var(--pink);margin-bottom:2px;font-weight:700;">PILLAR 5</div><textarea class="editable small" placeholder="Optional"></textarea></div>
+        <div><div style="font-size:0.68rem;color:var(--pink);margin-bottom:2px;font-weight:700;">PILLAR 1</div><textarea class="editable small" id="pillar1" placeholder="e.g. Tutorials"></textarea></div>
+        <div><div style="font-size:0.68rem;color:var(--pink);margin-bottom:2px;font-weight:700;">PILLAR 2</div><textarea class="editable small" id="pillar2" placeholder="e.g. Personal story"></textarea></div>
+        <div><div style="font-size:0.68rem;color:var(--pink);margin-bottom:2px;font-weight:700;">PILLAR 3</div><textarea class="editable small" id="pillar3" placeholder="e.g. Myth-busting"></textarea></div>
+        <div><div style="font-size:0.68rem;color:var(--pink);margin-bottom:2px;font-weight:700;">PILLAR 4</div><textarea class="editable small" id="pillar4" placeholder="Optional"></textarea></div>
+        <div><div style="font-size:0.68rem;color:var(--pink);margin-bottom:2px;font-weight:700;">PILLAR 5</div><textarea class="editable small" id="pillar5" placeholder="Optional"></textarea></div>
       </div>
     </div>
   </div>
 
-  <!-- ═══════════════════════════════════ PHASE 4: HOOK GENERATORS ═══════ -->
+  <!-- PHASE 4 -->
   <div class="section-divider"><div class="line"></div><div class="label">Phase 4 — Hook Development</div><div class="line"></div></div>
-
   <div style="width:100%;max-width:1100px;margin-bottom:10px;">
-    <div style="font-size:0.8rem;color:var(--muted);line-height:1.6;">
-      The hook is the <strong style="color:#fff;">first line or visual</strong> that stops the scroll. Use these proven formulas below — fill in the blanks for YOUR niche.
-    </div>
+    <div style="font-size:0.8rem;color:var(--muted);line-height:1.6;">The hook is the <strong style="color:#fff;">first line or visual</strong> that stops the scroll. Fill in these proven formulas for YOUR niche.</div>
   </div>
 
-  <div class="hook-grid">
-
-    <div class="hook-card">
-      <div class="hook-card-title">🎯 The Bold Claim</div>
-      <div class="hook-card-formula">"[Controversial statement] and here's why..."</div>
-      <div style="font-size:0.72rem;color:var(--muted);margin-bottom:5px;">Best for: Myth-busting, hot takes, education</div>
-      <div style="font-size:0.72rem;color:var(--text);margin-bottom:4px;">Your version:</div>
-      <textarea class="editable small" placeholder='e.g. "Most people are doing X wrong — and it's costing them Y"'></textarea>
-    </div>
-
-    <div class="hook-card">
-      <div class="hook-card-title">🔢 The List Tease</div>
-      <div class="hook-card-formula">"[#] things I wish I knew before [X]"</div>
-      <div style="font-size:0.72rem;color:var(--muted);margin-bottom:5px;">Best for: Carousels, tutorials, listicles</div>
-      <div style="font-size:0.72rem;color:var(--text);margin-bottom:4px;">Your version:</div>
-      <textarea class="editable small" placeholder='e.g. "5 things I wish someone told me before starting X"'></textarea>
-    </div>
-
-    <div class="hook-card">
-      <div class="hook-card-title">😱 The Relatable Pain</div>
-      <div class="hook-card-formula">"If you've ever [felt/struggled with X], this is for you"</div>
-      <div style="font-size:0.72rem;color:var(--muted);margin-bottom:5px;">Best for: Emotional niches, storytelling</div>
-      <div style="font-size:0.72rem;color:var(--text);margin-bottom:4px;">Your version:</div>
-      <textarea class="editable small" placeholder='e.g. "If you've ever felt like X, keep reading..."'></textarea>
-    </div>
-
-    <div class="hook-card">
-      <div class="hook-card-title">⚡ The Fast Result</div>
-      <div class="hook-card-formula">"How I [achieved result] in [short timeframe]"</div>
-      <div style="font-size:0.72rem;color:var(--muted);margin-bottom:5px;">Best for: Before/after, transformation content</div>
-      <div style="font-size:0.72rem;color:var(--text);margin-bottom:4px;">Your version:</div>
-      <textarea class="editable small" placeholder='e.g. "How I went from X to Y in 30 days"'></textarea>
-    </div>
-
-    <div class="hook-card">
-      <div class="hook-card-title">🤫 The Secret</div>
-      <div class="hook-card-formula">"Nobody talks about [X] but they should"</div>
-      <div style="font-size:0.72rem;color:var(--muted);margin-bottom:5px;">Best for: Insider knowledge, niche expertise</div>
-      <div style="font-size:0.72rem;color:var(--text);margin-bottom:4px;">Your version:</div>
-      <textarea class="editable small" placeholder='e.g. "The one thing no one tells you about X..."'></textarea>
-    </div>
-
-    <div class="hook-card">
-      <div class="hook-card-title">❓ The Open Loop</div>
-      <div class="hook-card-formula">"I made [mistake/discovery] — here's what happened"</div>
-      <div style="font-size:0.72rem;color:var(--muted);margin-bottom:5px;">Best for: Reels, stories, curiosity-driven posts</div>
-      <div style="font-size:0.72rem;color:var(--text);margin-bottom:4px;">Your version:</div>
-      <textarea class="editable small" placeholder='e.g. "I tried X for 30 days. Here's what actually happened..."'></textarea>
-    </div>
-
-  </div>
+  <div class="hook-grid" id="hookGrid"></div>
 
   <div class="arrow-connector" style="margin-top:20px;"><div class="arrow-col"><div class="line"></div><div class="arrowhead"></div></div></div>
 
-  <!-- ═══════════════════════════════════ PHASE 5: FIRST POST PLAN ═══════ -->
+  <!-- PHASE 5 -->
   <div class="section-divider"><div class="line"></div><div class="label">Phase 5 — Build Your First Post</div><div class="line"></div></div>
-
   <div style="width:100%;max-width:1100px;display:flex;flex-direction:column;gap:12px;">
 
-    <div class="node action" style="padding-left:32px;">
+    <div class="node action">
       <div class="node-title">📸 Post Format Decision</div>
-      <div class="node-question">What type of post makes most sense for your first piece of content?</div>
       <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:8px;">
-        <label style="display:flex;align-items:center;gap:5px;font-size:0.8rem;cursor:pointer;"><input type="radio" name="format" style="accent-color:var(--pink);"> Carousel (slides)</label>
-        <label style="display:flex;align-items:center;gap:5px;font-size:0.8rem;cursor:pointer;"><input type="radio" name="format"> Single image</label>
-        <label style="display:flex;align-items:center;gap:5px;font-size:0.8rem;cursor:pointer;"><input type="radio" name="format"> Reel (short video)</label>
-        <label style="display:flex;align-items:center;gap:5px;font-size:0.8rem;cursor:pointer;"><input type="radio" name="format"> Text / quote post</label>
-        <label style="display:flex;align-items:center;gap:5px;font-size:0.8rem;cursor:pointer;"><input type="radio" name="format"> Story</label>
+        <label style="display:flex;align-items:center;gap:5px;font-size:0.8rem;cursor:pointer;"><input type="radio" name="format" value="Carousel"> Carousel</label>
+        <label style="display:flex;align-items:center;gap:5px;font-size:0.8rem;cursor:pointer;"><input type="radio" name="format" value="Single image"> Single image</label>
+        <label style="display:flex;align-items:center;gap:5px;font-size:0.8rem;cursor:pointer;"><input type="radio" name="format" value="Reel"> Reel</label>
+        <label style="display:flex;align-items:center;gap:5px;font-size:0.8rem;cursor:pointer;"><input type="radio" name="format" value="Text/quote post"> Text / quote post</label>
+        <label style="display:flex;align-items:center;gap:5px;font-size:0.8rem;cursor:pointer;"><input type="radio" name="format" value="Story"> Story</label>
       </div>
       <div style="margin-top:8px;font-size:0.73rem;color:var(--muted);margin-bottom:3px;">Why this format?</div>
-      <textarea class="editable small" placeholder="Because..."></textarea>
+      <textarea class="editable small" id="post_format_why" placeholder="Because..."></textarea>
     </div>
 
-    <div class="node action" style="padding-left:32px;">
+    <div class="node action">
       <div class="node-title">✍️ Post Structure</div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:8px;">
-        <div>
-          <div style="font-size:0.73rem;color:var(--accent);margin-bottom:3px;">Hook (first line / visual):</div>
-          <textarea class="editable small" placeholder="Your scroll-stopper..."></textarea>
-        </div>
-        <div>
-          <div style="font-size:0.73rem;color:var(--accent);margin-bottom:3px;">Body / Value (what's in the post):</div>
-          <textarea class="editable small" placeholder="What will you teach/share/show?"></textarea>
-        </div>
-        <div>
-          <div style="font-size:0.73rem;color:var(--accent);margin-bottom:3px;">Call to Action (CTA):</div>
-          <textarea class="editable small" placeholder='e.g. "Save this for later" / "Comment X if you want part 2"'></textarea>
-        </div>
-        <div>
-          <div style="font-size:0.73rem;color:var(--accent);margin-bottom:3px;">Caption Notes:</div>
-          <textarea class="editable small" placeholder="Key caption ideas, tone, emojis..."></textarea>
-        </div>
+        <div><div style="font-size:0.73rem;color:var(--accent);margin-bottom:3px;">Hook (first line / visual):</div><textarea class="editable small" id="post_hook" placeholder="Your scroll-stopper..."></textarea></div>
+        <div><div style="font-size:0.73rem;color:var(--accent);margin-bottom:3px;">Body / Value:</div><textarea class="editable small" id="post_body" placeholder="What will you teach/share/show?"></textarea></div>
+        <div><div style="font-size:0.73rem;color:var(--accent);margin-bottom:3px;">Call to Action (CTA):</div><textarea class="editable small" id="post_cta" placeholder='e.g. "Save this for later"'></textarea></div>
+        <div><div style="font-size:0.73rem;color:var(--accent);margin-bottom:3px;">Caption Notes:</div><textarea class="editable small" id="post_caption" placeholder="Key caption ideas, tone, emojis..."></textarea></div>
       </div>
     </div>
 
-    <div class="node action" style="padding-left:32px;">
+    <div class="node action">
       <div class="node-title">🏷 Hashtag & SEO Strategy</div>
       <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:8px;">
-        <div>
-          <div style="font-size:0.73rem;color:var(--green);margin-bottom:3px;">Big hashtags (1M+):</div>
-          <textarea class="editable small" placeholder="#..."></textarea>
-        </div>
-        <div>
-          <div style="font-size:0.73rem;color:var(--accent);margin-bottom:3px;">Medium hashtags (50k–500k):</div>
-          <textarea class="editable small" placeholder="#..."></textarea>
-        </div>
-        <div>
-          <div style="font-size:0.73rem;color:var(--pink);margin-bottom:3px;">Niche hashtags (&lt;50k):</div>
-          <textarea class="editable small" placeholder="#..."></textarea>
-        </div>
+        <div><div style="font-size:0.73rem;color:var(--green);margin-bottom:3px;">Big hashtags (1M+):</div><textarea class="editable small" id="hashtag_big" placeholder="#..."></textarea></div>
+        <div><div style="font-size:0.73rem;color:var(--accent);margin-bottom:3px;">Medium (50k–500k):</div><textarea class="editable small" id="hashtag_med" placeholder="#..."></textarea></div>
+        <div><div style="font-size:0.73rem;color:var(--pink);margin-bottom:3px;">Niche (&lt;50k):</div><textarea class="editable small" id="hashtag_niche" placeholder="#..."></textarea></div>
       </div>
-      <div style="margin-top:8px;font-size:0.73rem;color:var(--muted);margin-bottom:3px;">Keywords in caption (for SEO/Search):</div>
-      <textarea class="editable small" placeholder="Words people type when searching for your content..."></textarea>
+      <div style="margin-top:8px;font-size:0.73rem;color:var(--muted);margin-bottom:3px;">Keywords in caption (SEO):</div>
+      <textarea class="editable small" id="seo_keywords" placeholder="Words people type when searching for your content..."></textarea>
     </div>
 
-    <div class="node action" style="padding-left:32px;">
+    <div class="node action">
       <div class="node-title">🖼 Visual / Creative Brief</div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:8px;">
-        <div>
-          <div style="font-size:0.73rem;color:var(--accent);margin-bottom:3px;">Visual style / aesthetic:</div>
-          <textarea class="editable small" placeholder="Clean, dark, colorful, minimal, bold text..."></textarea>
-        </div>
-        <div>
-          <div style="font-size:0.73rem;color:var(--accent);margin-bottom:3px;">Tools you'll use:</div>
-          <textarea class="editable small" placeholder="Canva, CapCut, phone camera, Lightroom..."></textarea>
-        </div>
+        <div><div style="font-size:0.73rem;color:var(--accent);margin-bottom:3px;">Visual style / aesthetic:</div><textarea class="editable small" id="visual_style" placeholder="Clean, dark, colorful, minimal, bold text..."></textarea></div>
+        <div><div style="font-size:0.73rem;color:var(--accent);margin-bottom:3px;">Tools you'll use:</div><textarea class="editable small" id="visual_tools" placeholder="Canva, CapCut, phone camera..."></textarea></div>
       </div>
     </div>
-
   </div>
 
-  <!-- ═══════════════════════════════════ PHASE 6: PRE-POST CHECKLIST ═══════ -->
+  <!-- PHASE 6 -->
   <div class="section-divider"><div class="line"></div><div class="label">Phase 6 — Pre-Post Checklist</div><div class="line"></div></div>
-
   <div style="width:100%;max-width:1100px;">
     <div class="node" style="background:var(--card2);border-color:rgba(111,207,151,0.3);">
       <div class="node-title">✅ Before You Hit Post</div>
-      <ul class="checklist">
-        <li><input type="checkbox"> Hook is in the first 1–2 lines (no fluff before it)</li>
-        <li><input type="checkbox"> Value is clear — viewer knows what they're getting</li>
-        <li><input type="checkbox"> CTA is specific (not just "follow me")</li>
-        <li><input type="checkbox"> Caption has at least 1–2 searchable keywords</li>
-        <li><input type="checkbox"> 3–10 relevant hashtags added (not 30 random ones)</li>
-        <li><input type="checkbox"> Visual is clean, on-brand, easy to read on mobile</li>
-        <li><input type="checkbox"> Alt text added (accessibility + SEO boost)</li>
-        <li><input type="checkbox"> Profile bio updated to reflect your niche</li>
-        <li><input type="checkbox"> Profile photo is clear and represents your brand</li>
-        <li><input type="checkbox"> You've checked the post previews in Instagram before publishing</li>
-        <li><input type="checkbox"> You're posting at a good time for your audience timezone</li>
-        <li><input type="checkbox"> You're ready to respond to comments in the first hour</li>
+      <ul class="checklist" id="prepostChecklist">
+        <li><input type="checkbox" data-label="Hook is in the first 1–2 lines"> Hook is in the first 1–2 lines (no fluff before it)</li>
+        <li><input type="checkbox" data-label="Value is clear"> Value is clear — viewer knows what they're getting</li>
+        <li><input type="checkbox" data-label="CTA is specific"> CTA is specific (not just "follow me")</li>
+        <li><input type="checkbox" data-label="Caption has searchable keywords"> Caption has at least 1–2 searchable keywords</li>
+        <li><input type="checkbox" data-label="3–10 relevant hashtags added"> 3–10 relevant hashtags added</li>
+        <li><input type="checkbox" data-label="Visual is clean and on-brand"> Visual is clean, on-brand, easy to read on mobile</li>
+        <li><input type="checkbox" data-label="Alt text added"> Alt text added (accessibility + SEO boost)</li>
+        <li><input type="checkbox" data-label="Profile bio updated"> Profile bio updated to reflect your niche</li>
+        <li><input type="checkbox" data-label="Profile photo is clear"> Profile photo is clear and represents your brand</li>
+        <li><input type="checkbox" data-label="Checked post previews in Instagram"> Checked post previews in Instagram before publishing</li>
+        <li><input type="checkbox" data-label="Posting at a good time"> Posting at a good time for your audience timezone</li>
+        <li><input type="checkbox" data-label="Ready to respond to comments"> Ready to respond to comments in the first hour</li>
       </ul>
       <div style="margin-top:10px;font-size:0.73rem;color:var(--muted);margin-bottom:3px;">Any last notes / hesitations?</div>
-      <textarea class="editable small" placeholder="Things to remember, fears, last minute ideas..."></textarea>
+      <textarea class="editable small" id="prepost_notes" placeholder="Things to remember, fears, last minute ideas..."></textarea>
     </div>
   </div>
 
   <div class="arrow-connector" style="margin-top:20px;"><div class="arrow-col"><div class="line"></div><div class="arrowhead"></div></div></div>
 
-  <!-- END NODE -->
   <div class="node end-node" style="width:100%;max-width:400px;">
     <div style="font-size:1.5rem;margin-bottom:6px;">🚀</div>
     <div class="node-title" style="font-size:1rem;">POST IT.</div>
     <div style="font-size:0.8rem;color:var(--muted);margin-top:4px;">Done is better than perfect. Your first post is a data point, not a defining moment.</div>
   </div>
 
-  <!-- ═══════════════════════════════════ PHASE 7: POST-POST REVIEW ═══════ -->
-  <div class="section-divider"><div class="line"></div><div class="label">Phase 7 — After You Post (Reflect & Improve)</div><div class="line"></div></div>
-
-  <div style="width:100%;max-width:1100px;display:flex;flex-direction:column;gap:12px;">
-    <div class="node action" style="padding-left:32px;">
+  <!-- PHASE 7 -->
+  <div class="section-divider"><div class="line"></div><div class="label">Phase 7 — After You Post</div><div class="line"></div></div>
+  <div style="width:100%;max-width:1100px;">
+    <div class="node action">
       <div class="node-title">📊 Performance Notes (fill in 48hrs later)</div>
       <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:8px;">
-        <div><div style="font-size:0.7rem;color:var(--muted);margin-bottom:2px;">Reach:</div><textarea class="editable small" style="min-height:32px;" placeholder="#"></textarea></div>
-        <div><div style="font-size:0.7rem;color:var(--muted);margin-bottom:2px;">Likes:</div><textarea class="editable small" style="min-height:32px;" placeholder="#"></textarea></div>
-        <div><div style="font-size:0.7rem;color:var(--muted);margin-bottom:2px;">Saves:</div><textarea class="editable small" style="min-height:32px;" placeholder="#"></textarea></div>
-        <div><div style="font-size:0.7rem;color:var(--muted);margin-bottom:2px;">New Follows:</div><textarea class="editable small" style="min-height:32px;" placeholder="#"></textarea></div>
+        <div><div style="font-size:0.7rem;color:var(--muted);margin-bottom:2px;">Reach:</div><textarea class="editable small" id="perf_reach" style="min-height:32px;" placeholder="#"></textarea></div>
+        <div><div style="font-size:0.7rem;color:var(--muted);margin-bottom:2px;">Likes:</div><textarea class="editable small" id="perf_likes" style="min-height:32px;" placeholder="#"></textarea></div>
+        <div><div style="font-size:0.7rem;color:var(--muted);margin-bottom:2px;">Saves:</div><textarea class="editable small" id="perf_saves" style="min-height:32px;" placeholder="#"></textarea></div>
+        <div><div style="font-size:0.7rem;color:var(--muted);margin-bottom:2px;">New Follows:</div><textarea class="editable small" id="perf_follows" style="min-height:32px;" placeholder="#"></textarea></div>
       </div>
       <div style="margin-top:8px;font-size:0.73rem;color:var(--muted);margin-bottom:3px;">What worked? What would I change?</div>
-      <textarea class="editable" placeholder="Reflections..."></textarea>
-      <div style="margin-top:6px;font-size:0.73rem;color:var(--muted);margin-bottom:3px;">What's my next post idea based on this?</div>
-      <textarea class="editable small" placeholder="Next post idea..."></textarea>
+      <textarea class="editable" id="perf_reflection" placeholder="Reflections..."></textarea>
+      <div style="margin-top:6px;font-size:0.73rem;color:var(--muted);margin-bottom:3px;">Next post idea:</div>
+      <textarea class="editable small" id="perf_next" placeholder="Next post idea..."></textarea>
     </div>
   </div>
-
-  <div class="print-note">💾 Save this file to your computer → upload to Google Drive → open in Chrome to continue editing anytime.</div>
 
 </div><!-- /flow-wrapper -->
 
 <script>
-  function rate(el, id, val) {
-    const stars = el.closest('.stars').querySelectorAll('span');
-    stars.forEach((s, i) => {
-      s.classList.toggle('active', i < val);
+// ══════════════════════════════════════════
+//  DATA DEFINITIONS
+// ══════════════════════════════════════════
+
+const NICHE_COUNT = 6;
+const nicheRatings = {};
+
+const HOOK_DEFS = [
+  { id: 'hook_boldclaim',   title: '🎯 The Bold Claim',    formula: '"[Controversial statement] and here\'s why..."',             hint: 'Best for: Myth-busting, hot takes, education' },
+  { id: 'hook_listtease',   title: '🔢 The List Tease',    formula: '"[#] things I wish I knew before [X]"',                      hint: 'Best for: Carousels, tutorials, listicles' },
+  { id: 'hook_pain',        title: '😱 The Relatable Pain', formula: '"If you\'ve ever [felt/struggled with X], this is for you"', hint: 'Best for: Emotional niches, storytelling' },
+  { id: 'hook_fastresult',  title: '⚡ The Fast Result',   formula: '"How I [achieved result] in [short timeframe]"',              hint: 'Best for: Before/after, transformation' },
+  { id: 'hook_secret',      title: '🤫 The Secret',        formula: '"Nobody talks about [X] but they should"',                   hint: 'Best for: Insider knowledge, niche expertise' },
+  { id: 'hook_openloop',    title: '❓ The Open Loop',      formula: '"I made [mistake/discovery] — here\'s what happened"',       hint: 'Best for: Reels, stories, curiosity posts' },
+];
+
+// ══════════════════════════════════════════
+//  BUILD NICHE CARDS
+// ══════════════════════════════════════════
+
+function buildNicheCards() {
+  const grid = document.querySelector('.niche-grid');
+  for (let i = 1; i <= NICHE_COUNT; i++) {
+    nicheRatings[i] = 0;
+    grid.innerHTML += `
+    <div class="niche-card" id="nicheCard${i}">
+      <div class="node-title">💡 Niche Idea #${i}</div>
+      <textarea class="editable small" id="niche${i}_name" placeholder="Name your niche idea..." style="min-height:36px;"></textarea>
+      <div style="margin-top:10px;font-size:0.73rem;color:var(--muted);margin-bottom:3px;">Target audience:</div>
+      <textarea class="editable small" id="niche${i}_audience" placeholder="Who would follow this?" style="min-height:36px;"></textarea>
+      <div class="pros-cons">
+        <div><div class="pros-cons-label pro">✅ Pros</div><textarea class="editable small" id="niche${i}_pros" placeholder="Why this could work..."></textarea></div>
+        <div><div class="pros-cons-label con">❌ Cons</div><textarea class="editable small" id="niche${i}_cons" placeholder="Challenges / risks..."></textarea></div>
+      </div>
+      <div class="rating-row">Excitement:
+        <div class="stars" id="stars${i}">
+          <span onclick="rate(${i},1)">★</span>
+          <span onclick="rate(${i},2)">★</span>
+          <span onclick="rate(${i},3)">★</span>
+          <span onclick="rate(${i},4)">★</span>
+          <span onclick="rate(${i},5)">★</span>
+        </div>
+      </div>
+      <select class="status-select" id="niche${i}_status">
+        <option>⬜ To Explore</option>
+        <option>🟡 In Progress</option>
+        <option>✅ Chosen</option>
+        <option>❌ Ruled Out</option>
+      </select>
+    </div>`;
+  }
+}
+
+// ══════════════════════════════════════════
+//  BUILD HOOK CARDS
+// ══════════════════════════════════════════
+
+function buildHookCards() {
+  const grid = document.getElementById('hookGrid');
+  HOOK_DEFS.forEach(h => {
+    grid.innerHTML += `
+    <div class="hook-card">
+      <div class="hook-card-title">${h.title}</div>
+      <div class="hook-card-formula">${h.formula}</div>
+      <div style="font-size:0.72rem;color:var(--muted);margin-bottom:5px;">${h.hint}</div>
+      <div style="font-size:0.72rem;color:var(--text);margin-bottom:4px;">Your version:</div>
+      <textarea class="editable small" id="${h.id}" placeholder='Fill in for your niche...'></textarea>
+    </div>`;
+  });
+}
+
+// ══════════════════════════════════════════
+//  STAR RATING
+// ══════════════════════════════════════════
+
+function rate(nicheNum, val) {
+  nicheRatings[nicheNum] = val;
+  const stars = document.querySelectorAll(`#stars${nicheNum} span`);
+  stars.forEach((s, i) => s.classList.toggle('active', i < val));
+}
+
+function getStarDisplay(count) {
+  return '★'.repeat(count) + '☆'.repeat(5 - count);
+}
+
+// ══════════════════════════════════════════
+//  COLLECT ALL DATA
+// ══════════════════════════════════════════
+
+function val(id) {
+  const el = document.getElementById(id);
+  return el ? el.value.trim() : '';
+}
+
+function getSelectedFormat() {
+  const sel = document.querySelector('input[name="format"]:checked');
+  return sel ? sel.value : '';
+}
+
+function getNicheData() {
+  const niches = [];
+  for (let i = 1; i <= NICHE_COUNT; i++) {
+    niches.push({
+      num: i,
+      name: val(`niche${i}_name`),
+      audience: val(`niche${i}_audience`),
+      pros: val(`niche${i}_pros`),
+      cons: val(`niche${i}_cons`),
+      rating: nicheRatings[i] || 0,
+      status: document.getElementById(`niche${i}_status`)?.value || '',
     });
   }
+  return niches;
+}
 
-  function exportNotes() {
-    const textareas = document.querySelectorAll('textarea');
-    let out = "INSTAGRAM LAUNCH WORKBOOK — EXPORTED NOTES\n";
-    out += "==========================================\n\n";
-    textareas.forEach((ta, i) => {
-      if (ta.value.trim()) {
-        const label = ta.previousElementSibling 
-          ? (ta.previousElementSibling.textContent.trim() || `Field ${i+1}`) 
-          : `Field ${i+1}`;
-        out += `[${label}]\n${ta.value.trim()}\n\n`;
-      }
+function getChecklistStatus() {
+  const items = document.querySelectorAll('#prepostChecklist input[type="checkbox"]');
+  return Array.from(items).map(cb => ({ label: cb.dataset.label, checked: cb.checked }));
+}
+
+// ══════════════════════════════════════════
+//  GENERATE SUMMARY MODAL
+// ══════════════════════════════════════════
+
+function generateSummary() {
+  const niches = getNicheData();
+  const sorted = [...niches].sort((a, b) => b.rating - a.rating);
+  const hasAnyNiche = sorted.some(n => n.name);
+  const top2 = sorted.slice(0, 2);
+  const rest = sorted.slice(2).filter(n => n.name);
+
+  document.getElementById('exportDate').textContent = 'Generated: ' + new Date().toLocaleString();
+
+  let html = '';
+
+  // ── NICHE RANKING ──
+  html += `<div class="summary-section">
+    <h3>🏆 Niche Ideas — Ranked by Excitement</h3>`;
+
+  if (!hasAnyNiche) {
+    html += `<div class="no-data-msg">No niche ideas filled in yet — add some ideas and star ratings to see them ranked here.</div>`;
+  } else {
+    // Top 2
+    html += `<div class="top-niche-cards">`;
+    top2.forEach((n, idx) => {
+      const rankClass = idx === 0 ? 'rank1' : 'rank2';
+      const rankLabel = idx === 0 ? '🥇 Top Pick' : '🥈 Runner Up';
+      const nameTxt = n.name || `Niche Idea #${n.num} (untitled)`;
+      html += `<div class="top-niche-card ${rankClass}">
+        <div class="rank-badge">${rankLabel}</div>
+        <div class="niche-name">${escHtml(nameTxt)}</div>
+        <div class="star-display">${getStarDisplay(n.rating)} (${n.rating}/5)</div>
+        ${n.audience ? `<div class="niche-detail-label">Target Audience</div><div class="niche-detail-val">${escHtml(n.audience)}</div>` : ''}
+        ${(n.pros || n.cons) ? `<div class="pc-row">
+          <div class="pc-box"><div class="pc-label pro">✅ Pros</div><div class="pc-val">${escHtml(n.pros || '—')}</div></div>
+          <div class="pc-box"><div class="pc-label con">❌ Cons</div><div class="pc-val">${escHtml(n.cons || '—')}</div></div>
+        </div>` : ''}
+        <div style="margin-top:8px;font-size:0.72rem;color:#6b7280;">${escHtml(n.status)}</div>
+      </div>`;
     });
-    const blob = new Blob([out], {type: 'text/plain'});
-    const a = document.createElement('a');
-    a.href = URL.createObjectURL(blob);
-    a.download = 'instagram_workbook_notes.txt';
-    a.click();
-  }
+    html += `</div>`;
 
-  function clearAll() {
-    if (confirm('Clear ALL your notes? This cannot be undone.')) {
-      document.querySelectorAll('textarea').forEach(ta => ta.value = '');
-      document.querySelectorAll('.stars span').forEach(s => s.classList.remove('active'));
-      document.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.checked = false);
+    // Rest
+    if (rest.length > 0) {
+      html += `<div class="others-list">
+        <div class="others-list-title">📋 All Other Ideas (preserved for reference)</div>`;
+      rest.forEach(n => {
+        html += `<div class="other-niche-row">
+          <div class="on-stars">${getStarDisplay(n.rating)}</div>
+          <div style="flex:1;">
+            <div class="on-name">${escHtml(n.name || `Idea #${n.num}`)}</div>
+            ${n.audience ? `<div class="on-detail">👥 ${escHtml(n.audience)}</div>` : ''}
+            ${n.pros ? `<div class="on-detail" style="color:#16a34a;">✅ ${escHtml(n.pros)}</div>` : ''}
+            ${n.cons ? `<div class="on-detail" style="color:#dc2626;">❌ ${escHtml(n.cons)}</div>` : ''}
+          </div>
+          <div class="on-status">${escHtml(n.status)}</div>
+        </div>`;
+      });
+      html += `</div>`;
     }
   }
-</script>
+  html += `</div>`;
 
+  // ── PHASE 1 ──
+  const braindump = val('phase1_braindump');
+  const fq1 = val('filter_q1'), fq2 = val('filter_q2'), fq3 = val('filter_q3'), fq4 = val('filter_q4');
+  if (braindump || fq1 || fq2 || fq3 || fq4) {
+    html += `<div class="summary-section"><h3>🌱 Phase 1 — Initial Braindump & Filters</h3>`;
+    if (braindump) html += summaryField('What lights you up?', braindump);
+    html += `<div class="summary-2col">`;
+    if (fq1) html += summaryField('Could you talk for 30 min?', fq1);
+    if (fq2) html += summaryField('Existing audience?', fq2);
+    if (fq3) html += summaryField('Problem you\'ve solved?', fq3);
+    if (fq4) html += summaryField('People ask you about?', fq4);
+    html += `</div></div>`;
+  }
+
+  // ── NICHE DECISION ──
+  const nd = val('niche_decision'), na = val('niche_angle');
+  if (nd || na) {
+    html += `<div class="summary-section"><h3>🎯 Niche Decision</h3>`;
+    if (nd) html += summaryField('Chosen niche & why', nd);
+    if (na) html += summaryField('My unique angle / POV', na);
+    html += `</div>`;
+  }
+
+  // ── CONTENT PILLARS ──
+  const pillars = [1,2,3,4,5].map(i => val(`pillar${i}`)).filter(Boolean);
+  if (pillars.length) {
+    html += `<div class="summary-section"><h3>📐 Content Pillars</h3><div style="display:flex;gap:8px;flex-wrap:wrap;">`;
+    pillars.forEach((p, i) => {
+      html += `<div style="background:#f3f4f6;border:1px solid #e5e7eb;border-radius:8px;padding:6px 14px;font-size:0.82rem;font-weight:600;color:#374151;">Pillar ${i+1}: ${escHtml(p)}</div>`;
+    });
+    html += `</div></div>`;
+  }
+
+  // ── HOOKS ──
+  const hookVals = HOOK_DEFS.map(h => ({ title: h.title, val: val(h.id) })).filter(h => h.val);
+  if (hookVals.length) {
+    html += `<div class="summary-section"><h3>🪝 Hook Ideas</h3><div class="summary-3col">`;
+    hookVals.forEach(h => {
+      html += `<div class="hook-summary-card"><div class="hs-title">${h.title}</div><div class="hs-val">${escHtml(h.val)}</div></div>`;
+    });
+    html += `</div></div>`;
+  }
+
+  // ── FIRST POST ──
+  const fmt = getSelectedFormat();
+  const ph = val('post_hook'), pb = val('post_body'), pc = val('post_cta'), pca = val('post_caption');
+  const hb = val('hashtag_big'), hm = val('hashtag_med'), hn = val('hashtag_niche'), sk = val('seo_keywords');
+  const vs = val('visual_style'), vt = val('visual_tools'), pfw = val('post_format_why');
+  if (fmt || ph || pb || pc || pca || hb || hm || hn || sk || vs || vt) {
+    html += `<div class="summary-section"><h3>📸 First Post Plan</h3>`;
+    if (fmt) html += summaryField('Format', fmt + (pfw ? ' — ' + pfw : ''));
+    html += `<div class="summary-2col">`;
+    if (ph) html += summaryField('Hook', ph);
+    if (pb) html += summaryField('Body / Value', pb);
+    if (pc) html += summaryField('CTA', pc);
+    if (pca) html += summaryField('Caption Notes', pca);
+    html += `</div>`;
+    if (hb || hm || hn) {
+      html += `<div class="summary-3col" style="margin-top:8px;">`;
+      if (hb) html += summaryField('Big Hashtags (1M+)', hb);
+      if (hm) html += summaryField('Medium Hashtags', hm);
+      if (hn) html += summaryField('Niche Hashtags', hn);
+      html += `</div>`;
+    }
+    if (sk) html += summaryField('SEO Keywords', sk);
+    html += `<div class="summary-2col" style="margin-top:8px;">`;
+    if (vs) html += summaryField('Visual Style', vs);
+    if (vt) html += summaryField('Tools', vt);
+    html += `</div></div>`;
+  }
+
+  // ── CHECKLIST ──
+  const checks = getChecklistStatus();
+  const checkedItems = checks.filter(c => c.checked);
+  const pnotes = val('prepost_notes');
+  if (checkedItems.length || pnotes) {
+    html += `<div class="summary-section"><h3>✅ Pre-Post Checklist</h3>`;
+    html += `<ul class="checklist-summary">`;
+    checks.forEach(c => {
+      html += `<li><span class="cb-icon">${c.checked ? '✅' : '☐'}</span> ${escHtml(c.label)}</li>`;
+    });
+    html += `</ul>`;
+    if (pnotes) html += summaryField('Notes', pnotes);
+    html += `</div>`;
+  }
+
+  // ── PERFORMANCE ──
+  const pr = val('perf_reach'), pl = val('perf_likes'), ps = val('perf_saves'), pf = val('perf_follows');
+  const pref = val('perf_reflection'), pnext = val('perf_next');
+  if (pr || pl || ps || pf || pref || pnext) {
+    html += `<div class="summary-section"><h3>📊 Performance Notes</h3>`;
+    if (pr || pl || ps || pf) {
+      html += `<div class="summary-2col">`;
+      if (pr) html += summaryField('Reach', pr);
+      if (pl) html += summaryField('Likes', pl);
+      if (ps) html += summaryField('Saves', ps);
+      if (pf) html += summaryField('New Follows', pf);
+      html += `</div>`;
+    }
+    if (pref) html += summaryField('What worked / What to change', pref);
+    if (pnext) html += summaryField('Next Post Idea', pnext);
+    html += `</div>`;
+  }
+
+  document.getElementById('modalBody').innerHTML = html;
+  document.getElementById('summaryModal').classList.add('open');
+}
+
+function summaryField(label, value) {
+  const isEmpty = !value || value.trim() === '';
+  return `<div class="summary-field">
+    <div class="sf-label">${label}</div>
+    <div class="sf-val${isEmpty ? ' empty' : ''}">${isEmpty ? 'Not filled in' : escHtml(value)}</div>
+  </div>`;
+}
+
+function escHtml(str) {
+  if (!str) return '';
+  return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br>');
+}
+
+function closeModal() {
+  document.getElementById('summaryModal').classList.remove('open');
+}
+
+// ══════════════════════════════════════════
+//  EXPORT AS PDF (print dialog)
+// ══════════════════════════════════════════
+
+function exportPDF() {
+  // Make sure modal is open with latest data
+  if (!document.getElementById('summaryModal').classList.contains('open')) {
+    generateSummary();
+    setTimeout(window.print, 400);
+  } else {
+    window.print();
+  }
+}
+
+// ══════════════════════════════════════════
+//  EXPORT AS HTML FILE
+// ══════════════════════════════════════════
+
+function exportSummaryHTML() {
+  if (!document.getElementById('summaryModal').classList.contains('open')) {
+    generateSummary();
+    setTimeout(doExportHTML, 400);
+  } else {
+    doExportHTML();
+  }
+}
+
+function doExportHTML() {
+  const bodyContent = document.getElementById('modalBody').innerHTML;
+  const date = new Date().toLocaleString();
+  const html = `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Instagram Workbook Summary — ${date}</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=DM+Sans:wght@300;400;500&display=swap');
+  :root { --pink:#FF3CAC; --green:#16a34a; --blue:#2563eb; --amber:#f59e0b; }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { font-family:'DM Sans',sans-serif; background:#f7f6f2; color:#1a1a2e; padding-bottom:60px; }
+  .page-header { background:linear-gradient(135deg,#FF3CAC,#784BA0,#2B86C5); color:white; padding:40px 50px; }
+  .page-header h1 { font-family:'Syne',sans-serif; font-size:2rem; font-weight:800; }
+  .page-header p { opacity:0.8; margin-top:4px; font-size:0.9rem; }
+  .page-header .date { opacity:0.6; font-size:0.75rem; margin-top:8px; }
+  .content { max-width:900px; margin:40px auto; padding:0 30px; }
+  .summary-section { margin-bottom:32px; }
+  .summary-section h3 { font-family:'Syne',sans-serif; font-size:0.68rem; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#9ca3af; border-bottom:1px solid #e5e7eb; padding-bottom:6px; margin-bottom:16px; }
+  .top-niche-cards { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:16px; }
+  .top-niche-card { border-radius:14px; padding:20px; position:relative; }
+  .top-niche-card.rank1 { background:#fff7ed; border:2px solid #f59e0b; }
+  .top-niche-card.rank2 { background:#f0f9ff; border:2px solid #0ea5e9; }
+  .rank-badge { position:absolute; top:12px; right:12px; font-family:'Syne',sans-serif; font-size:0.65rem; font-weight:700; letter-spacing:1px; text-transform:uppercase; border-radius:20px; padding:2px 9px; }
+  .rank1 .rank-badge { background:#f59e0b; color:white; }
+  .rank2 .rank-badge { background:#0ea5e9; color:white; }
+  .niche-name { font-family:'Syne',sans-serif; font-size:1rem; font-weight:700; color:#1a1a2e; margin-bottom:6px; }
+  .star-display { color:#f59e0b; font-size:0.9rem; margin-bottom:10px; }
+  .niche-detail-label { font-size:0.68rem; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:#888; margin-top:8px; margin-bottom:2px; }
+  .niche-detail-val { font-size:0.82rem; color:#374151; line-height:1.5; }
+  .pc-row { display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:8px; }
+  .pc-box { background:rgba(0,0,0,0.04); border-radius:8px; padding:8px 10px; }
+  .pc-label { font-size:0.65rem; font-weight:700; letter-spacing:1px; text-transform:uppercase; margin-bottom:3px; }
+  .pc-label.pro { color:#16a34a; } .pc-label.con { color:#dc2626; }
+  .pc-val { font-size:0.78rem; color:#374151; line-height:1.4; }
+  .others-list { background:white; border:1px solid #e5e7eb; border-radius:12px; padding:16px 20px; }
+  .others-list-title { font-family:'Syne',sans-serif; font-size:0.72rem; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#6b7280; margin-bottom:12px; }
+  .other-niche-row { display:flex; align-items:flex-start; gap:12px; padding:10px 0; border-bottom:1px solid #e5e7eb; }
+  .other-niche-row:last-child { border-bottom:none; }
+  .on-stars { color:#f59e0b; font-size:0.8rem; min-width:70px; }
+  .on-name { font-family:'Syne',sans-serif; font-size:0.82rem; font-weight:700; color:#1a1a2e; }
+  .on-detail { font-size:0.76rem; color:#6b7280; margin-top:2px; line-height:1.4; }
+  .on-status { font-size:0.7rem; background:#f3f4f6; border-radius:20px; padding:1px 8px; color:#6b7280; }
+  .summary-field { margin-bottom:12px; }
+  .sf-label { font-size:0.7rem; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:#9ca3af; margin-bottom:3px; }
+  .sf-val { font-size:0.88rem; color:#1f2937; background:white; border:1px solid #e5e7eb; border-radius:8px; padding:10px 14px; line-height:1.6; }
+  .sf-val.empty { color:#d1d5db; font-style:italic; }
+  .summary-2col { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+  .summary-3col { display:grid; grid-template-columns:1fr 1fr 1fr; gap:10px; }
+  .hook-summary-card { background:#f0fdf4; border:1px solid #bbf7d0; border-radius:10px; padding:12px 14px; }
+  .hs-title { font-family:'Syne',sans-serif; font-size:0.72rem; font-weight:700; color:#16a34a; margin-bottom:4px; }
+  .hs-val { font-size:0.8rem; color:#1f2937; line-height:1.5; }
+  .checklist-summary { list-style:none; }
+  .checklist-summary li { display:flex; align-items:center; gap:8px; font-size:0.82rem; color:#374151; padding:4px 0; }
+  .no-data-msg { text-align:center; padding:24px; color:#9ca3af; font-size:0.85rem; font-style:italic; }
+  @media(max-width:600px) { .top-niche-cards,.summary-2col,.summary-3col { grid-template-columns:1fr; } .content { padding:0 16px; } }
+</style>
+</head>
+<body>
+<div class="page-header">
+  <h1>📋 Instagram Workbook Summary</h1>
+  <p>Your ideas ranked by excitement — top 2 spotlighted, all others preserved</p>
+  <div class="date">Generated: ${date}</div>
+</div>
+<div class="content">${bodyContent}</div>
+</body>
+</html>`;
+
+  const blob = new Blob([html], { type: 'text/html' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = `instagram_workbook_summary_${new Date().toISOString().slice(0,10)}.html`;
+  a.click();
+}
+
+// ══════════════════════════════════════════
+//  CLEAR ALL
+// ══════════════════════════════════════════
+
+function clearAll() {
+  if (!confirm('Clear ALL your notes? This cannot be undone.')) return;
+  document.querySelectorAll('textarea').forEach(ta => ta.value = '');
+  for (let i = 1; i <= NICHE_COUNT; i++) {
+    nicheRatings[i] = 0;
+    document.querySelectorAll(`#stars${i} span`).forEach(s => s.classList.remove('active'));
+  }
+  document.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.checked = false);
+  document.querySelectorAll('input[type="radio"]').forEach(rb => rb.checked = false);
+}
+
+// Close modal on overlay click
+document.getElementById('summaryModal').addEventListener('click', function(e) {
+  if (e.target === this) closeModal();
+});
+
+// ── INIT ──
+buildNicheCards();
+buildHookCards();
+</script>
 </body>
 </html>
